@@ -90,6 +90,12 @@ return {
           -- or a suggestion from your LSP for this to activate.
           map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
+          map('<leader>q', '<cmd> vim.lsp.diagnostics.setloclist()<CR>', 'Open diagnostics list')
+
+          map('K', '<cmd> lua vim.lsp.buf.hover()<CR>', '[H]over [D]ocumentation')
+          map('[d', '<cmd> lua vim.diagnostic.goto_next()CR>', '[G]o To [P]revious')
+          map(']d', '<cmd> lua vim.diagnostic.goto_prev()<CR>', '[G]o To [N]ext')
+
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -141,6 +147,15 @@ return {
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+      -- Global Diagnostic Configuration
+      vim.diagnostic.config {
+        virtual_text = false,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
+      }
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
