@@ -27,6 +27,7 @@ return {
       'ts_ls',
       'yamlfmt',
       'yamllint',
+      'ts_ls',
       'yamlls',
     },
   },

@@ -10,6 +10,8 @@ return {
   require 'plugins.vim-sleuth',
   require 'plugins.gitsigns',
   require 'plugins.whichkey',
+  require 'plugins.fterm',
+  require 'plugins.lazygit',
   require 'plugins.telescope',
   require 'plugins.lazydev',
   require 'plugins.luvit-meta',

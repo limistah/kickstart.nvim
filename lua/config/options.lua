@@ -76,3 +76,62 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+opt.backspace = { 'start', 'eol', 'indent' }
+opt.path:append { '**' }
+opt.spelllang = { 'en', 'sv' }
+opt.wildignore:append {
+  '*.o',
+  '*.obj',
+  '*.dll',
+  '*.exe',
+  '*.pyc',
+  '*.class',
+  '*.swp',
+  '*.swo',
+  '*.DS_Store',
+  '*/node_modules/*',
+  '*/target/*',
+  '*/build/*',
+  '*/dist/*',
+  '*/.git/*',
+  '*/.svn/*',
+  '*/.venv/*',
+  '*/venv/*',
+}
+if vim.fn.executable 'rg' == 1 then
+  opt.grepprg = 'rg --vimgrep --smart-case --follow'
+else
+  opt.grepprg = 'grep -n $* /dev/null'
+end
+-- Add asterisks in block comments
+opt.formatoptions:append { 'r' }
+
+-- Use spaces for tabs and whatnot
+o.tabstop = 4
+o.shiftwidth = 4
+o.shiftround = true
+o.expandtab = true
+
+-- Setting up undo
+opt.swapfile = false
+opt.backup = false
+
+local undodir = os.getenv 'HOME' .. '/.local/share/nvim/undo'
+vim.fn.mkdir(undodir, 'p') -- Create the directory if it doesn't exist
+opt.undodir = undodir
+opt.undofile = true
+opt.undolevels = 10000
+
+-- Setting up undo
+opt.swapfile = false
+opt.backup = false
+
+local undodir = os.getenv 'HOME' .. '/.local/share/nvim/undo'
+vim.fn.mkdir(undodir, 'p') -- Create the directory if it doesn't exist
+opt.undodir = undodir
+opt.undofile = true
+opt.undolevels = 10000
+
+-- Command-line abbreviation: Expand 'ff' into 'FzfLua'
+vim.cmd [[cabbrev ff FzfLua]]
